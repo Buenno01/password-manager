@@ -1,7 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Form, { FormValues } from './components/Form';
+import PasswordList from './components/PasswordList';
+import PasswordCard from './components/PasswordCard';
+
+export type RegisteredPasswordType = {
+  serviceValue: string,
+  loginValue: string,
+  passwordValue: string,
+  urlValue: string,
+  id: number,
+};
 
 function App() {
   const initialForm: FormValues = {
@@ -12,13 +22,22 @@ function App() {
   };
   const [formIsVisible, setFormIsVisible] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<FormValues>(initialForm);
-  const [registeredPasswords, setRegisteredPasswords] = useState<FormValues[]>([]);
+  const [passwords, setPasswords] = useState<RegisteredPasswordType[]>([]);
 
   const registerNewPassword = (newPassword: FormValues) => {
-    setRegisteredPasswords([...registeredPasswords, newPassword]);
+    const newId = passwords.length === 0
+      ? 1
+      : (passwords[passwords.length - 1].id + 1);
+    setPasswords([...passwords, { ...newPassword, id: newId }]);
   };
   const toggleFormVisibility = () => {
     setFormIsVisible(!formIsVisible);
+  };
+
+  const handleDeletePassword = (removedId: number) => {
+    const newList = passwords
+      .filter(({ id: passwordId }) => passwordId !== removedId);
+    setPasswords(newList);
   };
 
   return (
@@ -43,18 +62,21 @@ function App() {
             />
             <section>
               {
-                registeredPasswords.length === 0
+                passwords.length === 0
                   ? <p>nenhuma senha cadastrada</p>
-                  : registeredPasswords.map((password, index) => (
-                    <div key={ index }>
-                      <a target="_blank" href={ password.urlValue } rel="noreferrer">
-                        {password.serviceValue}
-                      </a>
-                      <p>{password.loginValue}</p>
-                      <p>{password.passwordValue}</p>
-                    </div>
-                  ))
-              }
+                  : (
+                    <PasswordList>
+                      { passwords.map((password) => (
+                        <PasswordCard
+                          key={ password.id }
+                          handleDeletePassword={ () => {
+                            handleDeletePassword(password.id);
+                          } }
+                          { ...password }
+                        />
+                      ))}
+                    </PasswordList>)
+}
             </section>
           </>
         )
