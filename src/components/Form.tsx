@@ -1,7 +1,6 @@
 import React, { SetStateAction } from 'react';
-import Input from './Input';
+import { Input, PasswordInput } from './FormItens/FormItens';
 import Button, { ButtonProps } from './Button';
-import PasswordInput from './PasswordInput';
 
 type FormProps = {
   toggleFormVisibility: () => void;
@@ -26,8 +25,15 @@ function Form({ toggleFormVisibility, formValues, setFormValues }: FormProps) {
     haveEspecialChar: (/[^A-Za-z0-9\s]+/.test(passwordValue)),
   };
 
-  function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
-    handleChange(e);
+  function handleCancelButton() {
+    const initialForm: FormValues = {
+      serviceValue: '',
+      loginValue: '',
+      passwordValue: '',
+      urlValue: '',
+    };
+    toggleFormVisibility();
+    setFormValues(initialForm);
   }
 
   function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
@@ -60,7 +66,7 @@ function Form({ toggleFormVisibility, formValues, setFormValues }: FormProps) {
       type: 'password',
       label: 'Senha',
       value: passwordValue,
-      handleChange: handlePasswordChange,
+      handleChange,
     },
     {
       id: 'url',
@@ -85,7 +91,7 @@ function Form({ toggleFormVisibility, formValues, setFormValues }: FormProps) {
     },
     {
       text: 'Cancelar',
-      handleClick: toggleFormVisibility,
+      handleClick: handleCancelButton,
     },
   ];
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import eyeClosedSvg from '../images/eye-closed.svg';
-import eyeOpenedSvg from '../images/eye-open.svg';
+import eyeClosedSvg from '../../images/eye-closed.svg';
+import eyeOpenedSvg from '../../images/eye-open.svg';
 
 type InputProps = {
   id: string,
@@ -16,7 +16,6 @@ function PasswordInput({ id, label, handleChange }: InputProps) {
       <input
         onChange={ handleChange }
         id={ id }
-        // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) .{8,16}"
         type={ passwordVisible ? 'text' : 'password' }
       />
       <button onClick={ () => { setPasswordVisible(!passwordVisible); } }>

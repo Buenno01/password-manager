@@ -29,10 +29,17 @@ function App() {
       }
       {
         !formIsVisible
-        && (<Button
-          handleClick={ toggleFormVisibility }
-          text="Cadastrar nova senha"
-        />)
+        && (
+          <>
+            <Button
+              handleClick={ toggleFormVisibility }
+              text="Cadastrar nova senha"
+            />
+            <section>
+              Nenhuma senha cadastrada
+            </section>
+          </>
+        )
       }
 
     </div>
