@@ -18,7 +18,10 @@ function PasswordInput({ id, label, handleChange }: InputProps) {
         id={ id }
         type={ passwordVisible ? 'text' : 'password' }
       />
-      <button onClick={ () => { setPasswordVisible(!passwordVisible); } }>
+      <button
+        data-testid="show-hide-form-password"
+        onClick={ () => { setPasswordVisible(!passwordVisible); } }
+      >
         <img
           src={ passwordVisible ? eyeOpenedSvg : eyeClosedSvg }
           alt={
