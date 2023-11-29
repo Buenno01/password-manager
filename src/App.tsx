@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Swal from 'sweetalert2';
 import Button from './components/Button';
 import Form, { FormValues } from './components/Form';
 import PasswordList from './components/PasswordList';
@@ -30,6 +31,11 @@ function App() {
       ? 1
       : (passwords[passwords.length - 1].id + 1);
     setPasswords([...passwords, { ...newPassword, id: newId }]);
+    Swal.fire({
+      icon: 'success',
+      title: 'Serviço cadastrado com sucesso',
+      timer: 1500,
+    });
   };
   const toggleFormVisibility = () => {
     setFormIsVisible(!formIsVisible);
