@@ -1,12 +1,13 @@
 import React from 'react';
 
-type ButtonProps = {
+export type ButtonProps = {
   text: string;
+  handleClick?: (() => void) | ((e: React.MouseEvent<HTMLButtonElement>) => void)
 };
 
-function Button({ text }: ButtonProps) {
+function Button({ text, handleClick = undefined }: ButtonProps) {
   return (
-    <button>
+    <button onClick={ handleClick }>
       { text }
     </button>
   );

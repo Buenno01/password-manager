@@ -1,8 +1,12 @@
 import React from 'react';
 import Input from './Input';
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 
-function Form() {
+type FormProps = {
+  toggleFormVisibility: () => void;
+};
+
+function Form({ toggleFormVisibility }: FormProps) {
   const inputs = [
     {
       id: 'serviceInput',
@@ -26,17 +30,21 @@ function Form() {
     },
   ];
 
-  const buttons = [
+  const buttons: ButtonProps[] = [
     {
       text: 'Cadastrar',
     },
     {
       text: 'Cancelar',
+      handleClick: toggleFormVisibility,
     },
   ];
 
   return (
-    <form action="#">
+    <form
+      action="#"
+      onSubmit={ (e) => { e.preventDefault(); } }
+    >
       {
         inputs.map((input, index) => (<Input key={ index } { ...input } />))
       }
@@ -44,7 +52,7 @@ function Form() {
         {buttons.map((button, index) => (
           <Button
             key={ index }
-            text={ button.text }
+            { ...button }
           />
         ))}
       </div>
