@@ -21,6 +21,7 @@ function App() {
     urlValue: '',
   };
   const [formIsVisible, setFormIsVisible] = useState<boolean>(false);
+  const [hiddenPasswords, setHiddenPasswords] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<FormValues>(initialForm);
   const [passwords, setPasswords] = useState<RegisteredPasswordType[]>([]);
 
@@ -66,12 +67,21 @@ function App() {
                   ? <p>nenhuma senha cadastrada</p>
                   : (
                     <PasswordList>
+                      <label>
+                        Esconder senhas
+                        <input
+                          type="checkbox"
+                          checked={ hiddenPasswords }
+                          onChange={ () => { setHiddenPasswords(!hiddenPasswords); } }
+                        />
+                      </label>
                       { passwords.map((password) => (
                         <PasswordCard
                           key={ password.id }
                           handleDeletePassword={ () => {
                             handleDeletePassword(password.id);
                           } }
+                          hiddenPasswords={ hiddenPasswords }
                           { ...password }
                         />
                       ))}

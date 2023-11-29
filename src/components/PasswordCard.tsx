@@ -5,10 +5,11 @@ type PasswordCardProps = {
   urlValue: string,
   id: number,
   handleDeletePassword: () => void,
+  hiddenPasswords: boolean,
 };
 
 export default function PasswordCard({ id, loginValue, passwordValue,
-  serviceValue, urlValue, handleDeletePassword }:PasswordCardProps) {
+  serviceValue, urlValue, handleDeletePassword, hiddenPasswords }:PasswordCardProps) {
   return (
     <div key={ id }>
       <button
@@ -22,7 +23,7 @@ export default function PasswordCard({ id, loginValue, passwordValue,
         {serviceValue}
       </a>
       <p>{loginValue}</p>
-      <p>{passwordValue}</p>
+      <p>{hiddenPasswords ? '******' : passwordValue}</p>
     </div>
   );
 }
