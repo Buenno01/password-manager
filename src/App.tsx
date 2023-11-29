@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
-import Form from './components/Form';
+import Form, { FormValues } from './components/Form';
 
 function App() {
+  const initialForm: FormValues = {
+    serviceValue: '',
+    loginValue: '',
+    passwordValue: '',
+    urlValue: '',
+  };
   const [formIsVisible, setFormIsVisible] = useState<boolean>(false);
+  const [formValues, setFormValues] = useState<FormValues>(initialForm);
   const toggleFormVisibility = () => {
     setFormIsVisible(!formIsVisible);
   };
@@ -13,7 +20,12 @@ function App() {
     <div>
       <h1>Gerenciador de senhas</h1>
       {
-        formIsVisible && <Form toggleFormVisibility={ toggleFormVisibility } />
+        formIsVisible
+        && <Form
+          formValues={ formValues }
+          setFormValues={ setFormValues }
+          toggleFormVisibility={ toggleFormVisibility }
+        />
       }
       {
         !formIsVisible
