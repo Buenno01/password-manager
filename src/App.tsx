@@ -12,6 +12,11 @@ function App() {
   };
   const [formIsVisible, setFormIsVisible] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<FormValues>(initialForm);
+  const [registeredPasswords, setRegisteredPasswords] = useState<FormValues[]>([]);
+
+  const registerNewPassword = (newPassword: FormValues) => {
+    setRegisteredPasswords([...registeredPasswords, newPassword]);
+  };
   const toggleFormVisibility = () => {
     setFormIsVisible(!formIsVisible);
   };
@@ -25,6 +30,7 @@ function App() {
           formValues={ formValues }
           setFormValues={ setFormValues }
           toggleFormVisibility={ toggleFormVisibility }
+          registerNewPassword={ registerNewPassword }
         />
       }
       {
@@ -36,7 +42,19 @@ function App() {
               text="Cadastrar nova senha"
             />
             <section>
-              Nenhuma senha cadastrada
+              {
+                registeredPasswords.length === 0
+                  ? <p>nenhuma senha cadastrada</p>
+                  : registeredPasswords.map((password, index) => (
+                    <div key={ index }>
+                      <a target="_blank" href={ password.urlValue } rel="noreferrer">
+                        {password.serviceValue}
+                      </a>
+                      <p>{password.loginValue}</p>
+                      <p>{password.passwordValue}</p>
+                    </div>
+                  ))
+              }
             </section>
           </>
         )

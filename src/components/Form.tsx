@@ -4,6 +4,7 @@ import Button, { ButtonProps } from './Button';
 
 type FormProps = {
   toggleFormVisibility: () => void;
+  registerNewPassword: (e:FormValues) => void,
   setFormValues: React.Dispatch<SetStateAction<FormValues>>,
   formValues: FormValues,
 };
@@ -15,7 +16,8 @@ export type FormValues = {
   urlValue: string,
 };
 
-function Form({ toggleFormVisibility, formValues, setFormValues }: FormProps) {
+function Form({ registerNewPassword, toggleFormVisibility,
+  formValues, setFormValues }: FormProps) {
   const { serviceValue, loginValue, passwordValue, urlValue } = formValues;
 
   const validatePassword = {
@@ -25,13 +27,20 @@ function Form({ toggleFormVisibility, formValues, setFormValues }: FormProps) {
     haveEspecialChar: (/[^A-Za-z0-9\s]+/.test(passwordValue)),
   };
 
+  const initialForm: FormValues = {
+    serviceValue: '',
+    loginValue: '',
+    passwordValue: '',
+    urlValue: '',
+  };
+
   function handleCancelButton() {
-    const initialForm: FormValues = {
-      serviceValue: '',
-      loginValue: '',
-      passwordValue: '',
-      urlValue: '',
-    };
+    toggleFormVisibility();
+    setFormValues(initialForm);
+  }
+
+  function handleRegisterButton() {
+    registerNewPassword(formValues);
     toggleFormVisibility();
     setFormValues(initialForm);
   }
@@ -88,6 +97,7 @@ function Form({ toggleFormVisibility, formValues, setFormValues }: FormProps) {
         && (loginValue.length > 0)
         && (serviceValue.length > 0)
       ),
+      handleClick: handleRegisterButton,
     },
     {
       text: 'Cancelar',
