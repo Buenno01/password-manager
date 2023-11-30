@@ -1,5 +1,5 @@
 import React, { SetStateAction } from 'react';
-import { Input, PasswordInput } from './FormItens/FormItens';
+import { Input, PasswordInput, Validations } from './FormItems/FormItems';
 import Button, { ButtonProps } from './Button';
 
 type FormProps = {
@@ -48,12 +48,6 @@ function Form({ registerNewPassword, toggleFormVisibility,
   function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
     setFormValues({ ...formValues, [`${target.id}Value`]: target.value });
   }
-  function setValidationsClass(string: 'minChar' | 'maxChar'
-  | 'haveNumAndLetter' | 'haveEspecialChar') {
-    return validatePassword[string]
-      ? 'valid-password-check '
-      : 'invalid-password-check';
-  }
 
   const inputs = [
     {
@@ -89,6 +83,7 @@ function Form({ registerNewPassword, toggleFormVisibility,
   const buttons: ButtonProps[] = [
     {
       text: 'Cadastrar',
+      styles: 'success',
       disabled: !(
         validatePassword.haveEspecialChar
         && validatePassword.haveNumAndLetter
@@ -101,6 +96,7 @@ function Form({ registerNewPassword, toggleFormVisibility,
     },
     {
       text: 'Cancelar',
+      styles: 'danger',
       handleClick: handleCancelButton,
     },
   ];
@@ -110,6 +106,8 @@ function Form({ registerNewPassword, toggleFormVisibility,
       <form
         action="#"
         onSubmit={ (e) => { e.preventDefault(); } }
+        className="w-96 bg-zinc-600 rounded-xl p-6 flex flex-col
+        items-center self-center"
       >
         {
         inputs.map((input, index) => (
@@ -118,7 +116,7 @@ function Form({ registerNewPassword, toggleFormVisibility,
             : <Input key={ index } { ...input } />
         ))
       }
-        <div>
+        <div className="grid grid-cols-2 w-full gap-4">
           {
         buttons.map((button, index) => (
           <Button
@@ -129,31 +127,12 @@ function Form({ registerNewPassword, toggleFormVisibility,
         }
         </div>
       </form>
-      <div>
-        <p
-          className={ setValidationsClass('minChar') }
-        >
-          Possuir 8 ou mais caracteres
-        </p>
-        <p
-          className={ setValidationsClass('maxChar') }
-        >
-          Possuir até 16 caracteres
-
-        </p>
-        <p
-          className={ setValidationsClass('haveNumAndLetter') }
-        >
-          Possuir letras e números
-
-        </p>
-        <p
-          className={ setValidationsClass('haveEspecialChar') }
-        >
-          Possuir algum caractere especial
-
-        </p>
-      </div>
+      <Validations
+        haveEspecialChar={ validatePassword.haveEspecialChar }
+        haveNumAndLetter={ validatePassword.haveNumAndLetter }
+        maxChar={ validatePassword.maxChar }
+        minChar={ validatePassword.minChar }
+      />
     </>
   );
 }

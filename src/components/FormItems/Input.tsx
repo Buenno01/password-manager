@@ -10,13 +10,17 @@ type InputProps = {
 
 function Input({ id, label, type, value, handleChange }: InputProps) {
   return (
-    <label htmlFor={ id }>
+    <label
+      htmlFor={ id }
+      className="text-white flex flex-col w-full mb-3"
+    >
       {label}
       <input
         id={ id }
         type={ type }
         value={ value }
         onChange={ handleChange }
+        className="bg-zinc-700 rounded-md h-8 p-2"
       />
     </label>
   );

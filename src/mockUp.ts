@@ -9,14 +9,14 @@ type RegisteredPasswordType = {
 const mockup: RegisteredPasswordType[] = [
   {
     serviceValue: 'LinkedIn',
-    loginValue: 'Meu usuário',
+    loginValue: 'myLinkedinUser',
     passwordValue: 'Senh4Dol!nked1n',
     urlValue: 'https://www.linkedin.com',
     id: 1,
   },
   {
     serviceValue: 'Instagram',
-    loginValue: 'Meu insta',
+    loginValue: 'MeuInsta',
     passwordValue: '!nst4Granmk',
     urlValue: 'https://www.instagram.com',
     id: 2,
@@ -27,6 +27,48 @@ const mockup: RegisteredPasswordType[] = [
     passwordValue: 'g0og!3p4ssw0rd',
     urlValue: 'https://www.google.com',
     id: 3,
+  },
+  {
+    serviceValue: 'Pexels',
+    loginValue: 'PhotoMe',
+    passwordValue: 'P3x3!sphotoMe',
+    urlValue: 'https://www.pexels.com',
+    id: 4,
+  },
+  {
+    serviceValue: 'FontAwesome',
+    loginValue: 'FontForMe',
+    passwordValue: 'mYf0nt5%',
+    urlValue: 'https://www.fontawesome.com',
+    id: 5,
+  },
+  {
+    serviceValue: 'Trybe',
+    loginValue: 'myTrybeUser',
+    passwordValue: 'tryB3r$@',
+    urlValue: 'https://app.betrybe.com/learn',
+    id: 6,
+  },
+  {
+    serviceValue: 'Stack Overflow',
+    loginValue: 'helpMePlease',
+    passwordValue: 'St4ackPa$$wordn',
+    urlValue: 'https://www.linkedin.com',
+    id: 7,
+  },
+  {
+    serviceValue: 'Instagram',
+    loginValue: 'Meu insta',
+    passwordValue: '!nst4Granmk',
+    urlValue: 'https://www.instagram.com',
+    id: 8,
+  },
+  {
+    serviceValue: 'npmjs',
+    loginValue: 'IWantLibraries',
+    passwordValue: 'g!mmeLibrai3s',
+    urlValue: 'https://www.google.com',
+    id: 9,
   },
 ];
 
