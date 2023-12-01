@@ -5,7 +5,6 @@ import Form, { FormValues } from './components/Form';
 import PasswordList from './components/PasswordList';
 import Title from './components/Title';
 import { RegisteredPasswordType } from './@types/type';
-import mockup from './mockUp';
 
 function App() {
   const initialForm: FormValues = {
@@ -18,7 +17,7 @@ function App() {
   const [formValues, setFormValues] = useState<FormValues>(initialForm);
   const [formIsVisible, setFormIsVisible] = useState<boolean>(false);
 
-  const [passwords, setPasswords] = useState<RegisteredPasswordType[]>(mockup);
+  const [passwords, setPasswords] = useState<RegisteredPasswordType[]>([]);
 
   const registerNewPassword = (newPassword: FormValues) => {
     const newId = passwords.length === 0

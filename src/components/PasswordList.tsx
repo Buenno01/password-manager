@@ -2,6 +2,8 @@ import React, { SetStateAction, useState } from 'react';
 import Swal from 'sweetalert2';
 import { RegisteredPasswordType } from '../@types/type';
 import { PasswordCard, HidePasswordsInput } from './PasswordListItems/PasswordListItems';
+import Button from './Button';
+import mockup from '../mockUp';
 
 type PasswordListProps = {
   passwords: RegisteredPasswordType[],
@@ -16,6 +18,7 @@ export default function PasswordList({ passwords, setPasswords }:PasswordListPro
     confirmButtonColor: '#ef4444',
     denyButtonColor: '#3b82f6',
   };
+
   const handleDeletePassword = (removedId: number, service: string) => {
     const newList = passwords
       .filter(({ id: passwordId }) => passwordId !== removedId);
@@ -87,6 +90,13 @@ export default function PasswordList({ passwords, setPasswords }:PasswordListPro
             </>
           )
           }
+      <span className="w-36">
+        <Button
+          text="Criar mockUp"
+          handleClick={ () => { setPasswords([...passwords, ...mockup]); } }
+          styles="info"
+        />
+      </span>
     </section>
 
   );
