@@ -20,11 +20,11 @@ function Validations({ haveEspecialChar, haveNumAndLetter,
     },
     {
       description: 'Possuir algum caractere especial',
-      status: haveNumAndLetter,
+      status: haveEspecialChar,
     },
     {
       description: 'Possuir letras e números',
-      status: haveEspecialChar,
+      status: haveNumAndLetter,
     },
   ];
   return (
