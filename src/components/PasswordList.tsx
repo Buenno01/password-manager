@@ -84,7 +84,6 @@ export default function PasswordList({ passwords, setPasswords }:PasswordListPro
                   />))
                 }
               </div>
-
             </>
           )
           }
