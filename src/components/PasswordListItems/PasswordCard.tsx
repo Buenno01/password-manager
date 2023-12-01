@@ -18,7 +18,7 @@ export default function PasswordCard({ id, loginValue, passwordValue,
     <div
       key={ id }
       className="bg-zinc-700 text-white rounded-xl p-3
-      flex flex-col justify-between md:w-80 w-72 h-48"
+      flex flex-col justify-between w-72 h-48"
     >
       <h3 className="flex text-2xl justify-between">
         <a target="_blank" href={ urlValue } rel="noreferrer">
