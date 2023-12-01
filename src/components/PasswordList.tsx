@@ -52,8 +52,8 @@ export default function PasswordList({ passwords, setPasswords }:PasswordListPro
   return (
 
     <section
-      className="flex flex-col container w-fit self-center
-    py-5 px-10 bg-zinc-600 rounded-xl gap-5"
+      className="flex flex-col container w-full md:w-fit self-center
+    py-5 md:px-10 bg-zinc-600 rounded-xl gap-5 items-center"
     >
 
       {
@@ -68,7 +68,10 @@ export default function PasswordList({ passwords, setPasswords }:PasswordListPro
                 hiddenPasswords={ hiddenPasswords }
                 handleChange={ () => { setHiddenPasswords(!hiddenPasswords); } }
               />
-              <div className="grid grid-cols-4 gap-5">
+              <div
+                className="grid lg:grid-cols-3 xl:grid-cols-4
+              grid-cols-1 md:grid-cols-2 gap-5"
+              >
                 {
                 passwords.map((password) => (
                   <PasswordCard
